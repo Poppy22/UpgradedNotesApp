@@ -8,13 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		F45DD9C52066B26A00A18FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DD9C42066B26A00A18FA5 /* AppDelegate.swift */; };
-		F45DD9C72066B26A00A18FA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DD9C62066B26A00A18FA5 /* ViewController.swift */; };
 		F45DD9CA2066B26A00A18FA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45DD9C82066B26A00A18FA5 /* Main.storyboard */; };
 		F45DD9CD2066B26A00A18FA5 /* NotesApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F45DD9CB2066B26A00A18FA5 /* NotesApp.xcdatamodeld */; };
 		F45DD9CF2066B26A00A18FA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F45DD9CE2066B26A00A18FA5 /* Assets.xcassets */; };
 		F45DD9D22066B26A00A18FA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45DD9D02066B26A00A18FA5 /* LaunchScreen.storyboard */; };
 		F45DD9DD2066B26A00A18FA5 /* NotesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DD9DC2066B26A00A18FA5 /* NotesAppTests.swift */; };
 		F45DD9E82066B26A00A18FA5 /* NotesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DD9E72066B26A00A18FA5 /* NotesAppUITests.swift */; };
+		F45DD9FB2066E83700A18FA5 /* TableNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DD9FA2066E83700A18FA5 /* TableNotesViewController.swift */; };
+		F45DD9FD2066E84200A18FA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DD9FC2066E84200A18FA5 /* LoginViewController.swift */; };
+		F45DD9FF2066E84E00A18FA5 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DD9FE2066E84E00A18FA5 /* NoteViewController.swift */; };
+		F45DDA012066E87F00A18FA5 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DDA002066E87F00A18FA5 /* NoteTableViewCell.swift */; };
+		F45DDA032066E88D00A18FA5 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DDA022066E88D00A18FA5 /* ImageCollectionViewCell.swift */; };
+		F45DDA052066F1D600A18FA5 /* NoteClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DDA042066F1D600A18FA5 /* NoteClass.swift */; };
+		F45DDA072066F20F00A18FA5 /* ImageClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DDA062066F20F00A18FA5 /* ImageClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +43,6 @@
 /* Begin PBXFileReference section */
 		F45DD9C12066B26A00A18FA5 /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45DD9C42066B26A00A18FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F45DD9C62066B26A00A18FA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F45DD9C92066B26A00A18FA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F45DD9CC2066B26A00A18FA5 /* NotesApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesApp.xcdatamodel; sourceTree = "<group>"; };
 		F45DD9CE2066B26A00A18FA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +54,13 @@
 		F45DD9E32066B26A00A18FA5 /* NotesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45DD9E72066B26A00A18FA5 /* NotesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAppUITests.swift; sourceTree = "<group>"; };
 		F45DD9E92066B26A00A18FA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F45DD9FA2066E83700A18FA5 /* TableNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableNotesViewController.swift; sourceTree = "<group>"; };
+		F45DD9FC2066E84200A18FA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F45DD9FE2066E84E00A18FA5 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		F45DDA002066E87F00A18FA5 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		F45DDA022066E88D00A18FA5 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		F45DDA042066F1D600A18FA5 /* NoteClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteClass.swift; sourceTree = "<group>"; };
+		F45DDA062066F20F00A18FA5 /* ImageClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +161,9 @@
 		F45DD9F72066B4BE00A18FA5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F45DD9C62066B26A00A18FA5 /* ViewController.swift */,
+				F45DD9FA2066E83700A18FA5 /* TableNotesViewController.swift */,
+				F45DD9FC2066E84200A18FA5 /* LoginViewController.swift */,
+				F45DD9FE2066E84E00A18FA5 /* NoteViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -157,6 +171,8 @@
 		F45DD9F82066B50B00A18FA5 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				F45DDA002066E87F00A18FA5 /* NoteTableViewCell.swift */,
+				F45DDA022066E88D00A18FA5 /* ImageCollectionViewCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -164,6 +180,8 @@
 		F45DD9F92066B51200A18FA5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F45DDA042066F1D600A18FA5 /* NoteClass.swift */,
+				F45DDA062066F20F00A18FA5 /* ImageClass.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -303,7 +321,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F45DD9CD2066B26A00A18FA5 /* NotesApp.xcdatamodeld in Sources */,
-				F45DD9C72066B26A00A18FA5 /* ViewController.swift in Sources */,
+				F45DD9FB2066E83700A18FA5 /* TableNotesViewController.swift in Sources */,
+				F45DDA072066F20F00A18FA5 /* ImageClass.swift in Sources */,
+				F45DDA032066E88D00A18FA5 /* ImageCollectionViewCell.swift in Sources */,
+				F45DD9FD2066E84200A18FA5 /* LoginViewController.swift in Sources */,
+				F45DD9FF2066E84E00A18FA5 /* NoteViewController.swift in Sources */,
+				F45DDA012066E87F00A18FA5 /* NoteTableViewCell.swift in Sources */,
+				F45DDA052066F1D600A18FA5 /* NoteClass.swift in Sources */,
 				F45DD9C52066B26A00A18FA5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
