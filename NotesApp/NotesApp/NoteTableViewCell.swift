@@ -13,6 +13,7 @@ class NoteTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var shouldDeleteButton: UIButton!
     
 
     override func awakeFromNib() {
@@ -24,6 +25,13 @@ class NoteTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func loadCell(note: NoteClass, isSelected: Bool) {
+        self.titleLabel.text = note.title
+        self.descriptionLabel.text = note.detail
+        shouldDeleteButton.isHidden = !isSelected
+        
     }
 
 }
