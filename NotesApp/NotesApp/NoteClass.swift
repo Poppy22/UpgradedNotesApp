@@ -7,6 +7,10 @@
 //
 
 import UIKit
+/* FEEDBACK:
+ - No need for "Class" suffix on data models
+ - No need for comments
+ */
 
 class NoteClass: NSObject {
     

@@ -12,6 +12,22 @@ let NoteIdentifier = "noteCell"
 let SegueToNote = "segueToNote"
 let SegueToLogin = "segueToLogin"
 
+/* FEEDBACK:
+ - Naming: NotesListController
+ - Naming: tableData => notes / noteItems / notesArray / tableNotes
+ - Use an enum to define controller states instead of bool "deleteModeOn"
+ - No need for comments if code is explicit enough
+ - Remove unused methods (didReceiveMemoryWarning)
+ - Deselect cells after tapping them
+ - There are two different separator styles between cells
+ 
+ enum ListMode {
+    case Normal
+    case Edit
+ }
+ 
+ */
+
 class TableNotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NoteCellDelegate {
     
     @IBOutlet weak var deleteModeBarButton: UIBarButtonItem!
@@ -47,6 +63,9 @@ class TableNotesViewController: UIViewController, UITableViewDelegate, UITableVi
         notesTableView.isHidden = (tableData.count == 0)
         
         //the delete mode is not set yet
+        /* FEEDBACK:
+         - Use literals, instead of UIImage constructor. Also, you don't need the .png extension
+         */
         if deleteModeOn {
             deleteModeBarButton.image = UIImage(named: "ic_nav_close.png")
         } else {

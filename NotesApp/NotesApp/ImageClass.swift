@@ -8,6 +8,10 @@
 
 import UIKit
 
+/* FEEDBACK:
+ - No need for "Class" suffix
+ */
+
 class ImageClass: NSObject {
     private(set) var fileName: String?
     
