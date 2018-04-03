@@ -9,7 +9,7 @@
 import UIKit
 
 class Image: NSObject {
-    private(set) var imageName: String!
+    private(set) var imageName: String?
     
     internal func set(imageName: String) {
         self.imageName = imageName

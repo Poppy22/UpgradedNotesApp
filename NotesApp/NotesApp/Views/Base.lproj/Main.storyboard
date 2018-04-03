@@ -66,8 +66,8 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMs-Y3-FWC">
-                                                    <rect key="frame" x="305" y="22" width="55" height="55.5"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMs-Y3-FWC">
+                                                    <rect key="frame" x="305" y="22.5" width="55" height="55"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="Bcz-hd-eVd"/>
                                                         <constraint firstAttribute="height" constant="55" id="gfE-ry-VtN"/>
@@ -153,7 +153,7 @@
                                 <action selector="exitDeleteMode:" destination="BYZ-38-t0r" id="fGn-Up-EXQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Login" image="ic_nav_profile" id="hHk-Gm-NT4">
+                        <barButtonItem key="rightBarButtonItem" image="ic_nav_profile" id="hHk-Gm-NT4">
                             <color key="tintColor" red="0.070588235294117646" green="0.47843137254901957" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="didTapOnRightBarButton:" destination="BYZ-38-t0r" id="76X-4M-vej"/>

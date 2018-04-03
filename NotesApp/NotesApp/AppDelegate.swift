@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 
+/* FEEDBACK:
+ - Don't use just groups for classes, use also folders on the disk and maintain the same hierarchy
+ */
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

@@ -12,6 +12,12 @@ protocol NoteCellDelegate {
     func onCellLongTap(longPressgestureRecognizer: UILongPressGestureRecognizer, cell: UITableViewCell)
 }
 
+/* FEEDBACK:
+ - Use image literals instead of UIImage constructor
+ - Selection management is automatic, you don't need to manage it by yourself (isSelected)
+ - UIImageViews has multiple states (normal / highlighted) you can configure the two different images from the storyboard and the selection / highlight will work automatically
+ */
+
 class NoteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!

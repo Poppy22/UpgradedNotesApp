@@ -12,6 +12,17 @@ let NoteIdentifier = "noteCell"
 let SegueToNote = "segueToNote"
 let SegueToLogin = "segueToLogin"
 
+/* FEEDBACK:
+ - Use an enum to define controller states instead of bool "deleteModeOn"
+ - Deselect cells after tapping them
+ 
+ enum ListMode {
+    case Normal
+    case Edit
+ }
+ 
+ */
+
 class NotesListController: UIViewController, UITableViewDelegate, UITableViewDataSource, NoteCellDelegate {
     
     @IBOutlet weak var deleteModeBarButton: UIBarButtonItem!
@@ -20,7 +31,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var newNoteButton: UIButton!
     @IBOutlet weak var notesTableView: UITableView!
     
-    var tableData = [Note]()
+    var notesArray = [Note]()
     var deleteModeOn = false
     var selectedNotesIndex = [Int]()
     
@@ -37,9 +48,8 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
 
     internal func loadInitialSettings() {
     
-        noNotesView.isHidden = !(tableData.count == 0)
-        notesTableView.isHidden = (tableData.count == 0)
-        
+        noNotesView.isHidden = !(notesArray.count == 0)
+        notesTableView.isHidden = (notesArray.count == 0)
         if deleteModeOn {
             deleteModeBarButton.image = #imageLiteral(resourceName: "ic_nav_close")
         } else {
@@ -53,17 +63,17 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
         for i in 1...20 {
             let newNote = Note()
             newNote.set(title: "Title " + String(i) + " only one line in length", detail: "A very very very very very long Description " + String(i), images: [], id: "10" + String(i), lastUpdate: 100)
-            tableData.append(newNote)
+            notesArray.append(newNote)
         }
     }
     
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        return notesArray.count
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NoteIdentifier, for: indexPath as IndexPath) as! NoteTableViewCell
-        let note = tableData[indexPath.row]
+        let note = notesArray[indexPath.row]
         cell.delegate = self
         cell.loadCell(note: note, isDeleteModeOn: deleteModeOn, isSelected: selectedNotesIndex.contains(indexPath.row))
         return cell
@@ -71,7 +81,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !deleteModeOn {
-            let currentNote = tableData[indexPath.row]
+            let currentNote = notesArray[indexPath.row]
             self.performSegue(withIdentifier: SegueToNote, sender: currentNote)
         } else {
             if selectedNotesIndex.contains(indexPath.row) {
@@ -107,7 +117,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
         for noteIndex in selectedNotesIndex {
             let index = self.selectedNotesIndex.index(of: noteIndex)
             selectedNotesIndex.remove(at: index!)
-            self.tableData.remove(at: noteIndex)
+            self.notesArray.remove(at: noteIndex)
         }
         deleteModeOn = false
         loadInitialSettings()
