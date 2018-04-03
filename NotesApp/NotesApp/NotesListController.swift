@@ -12,7 +12,7 @@ let NoteIdentifier = "noteCell"
 let SegueToNote = "segueToNote"
 let SegueToLogin = "segueToLogin"
 
-class TableNotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NoteCellDelegate {
+class NotesListController: UIViewController, UITableViewDelegate, UITableViewDataSource, NoteCellDelegate {
     
     @IBOutlet weak var deleteModeBarButton: UIBarButtonItem!
     @IBOutlet weak var loginBarButton: UIBarButtonItem!
@@ -20,7 +20,7 @@ class TableNotesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var newNoteButton: UIButton!
     @IBOutlet weak var notesTableView: UITableView!
     
-    var tableData = [NoteClass]()
+    var tableData = [Note]()
     var deleteModeOn = false
     var selectedNotesIndex = [Int]()
     
@@ -35,40 +35,33 @@ class TableNotesViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    internal func loadInitialSettings() {
     
-    func loadInitialSettings() {
-        
-        //check if there are any notes
         noNotesView.isHidden = !(tableData.count == 0)
         notesTableView.isHidden = (tableData.count == 0)
         
-        //the delete mode is not set yet
         if deleteModeOn {
-            deleteModeBarButton.image = UIImage(named: "ic_nav_close.png")
+            deleteModeBarButton.image = #imageLiteral(resourceName: "ic_nav_close")
         } else {
             deleteModeBarButton.image = nil
         }
         self.title = ""
-        loginBarButton.image = UIImage(named: "ic_nav_profile.png")
+        loginBarButton.image = #imageLiteral(resourceName: "ic_nav_profile")
     }
     
-    func populateTableWithMockData() {
+    internal func populateTableWithMockData() {
         for i in 1...20 {
-            let newNote = NoteClass()
+            let newNote = Note()
             newNote.set(title: "Title " + String(i) + " only one line in length", detail: "A very very very very very long Description " + String(i), images: [], id: "10" + String(i), lastUpdate: 100)
             tableData.append(newNote)
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableData.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NoteIdentifier, for: indexPath as IndexPath) as! NoteTableViewCell
         let note = tableData[indexPath.row]
         cell.delegate = self
@@ -76,10 +69,10 @@ class TableNotesViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !deleteModeOn {
-            let note = tableData[indexPath.row]
-            self.performSegue(withIdentifier: SegueToNote, sender: note)
+            let currentNote = tableData[indexPath.row]
+            self.performSegue(withIdentifier: SegueToNote, sender: currentNote)
         } else {
             if selectedNotesIndex.contains(indexPath.row) {
                 let index = selectedNotesIndex.index(of: indexPath.row)
@@ -93,7 +86,7 @@ class TableNotesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     //long press on a cell to enter delete mode
-    func onCellLongTap(longPressgestureRecognizer: UILongPressGestureRecognizer, cell: UITableViewCell) {
+    internal func onCellLongTap(longPressgestureRecognizer: UILongPressGestureRecognizer, cell: UITableViewCell) {
         if longPressgestureRecognizer.state == UIGestureRecognizerState.began {
             
             if let indexPath = notesTableView.indexPath(for: cell) {
@@ -107,7 +100,7 @@ class TableNotesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
-    func deleteSelectedNotes(alert: UIAlertAction) {
+    internal func deleteSelectedNotes(alert: UIAlertAction) {
         selectedNotesIndex.sort()
         selectedNotesIndex.reverse()
         
@@ -121,14 +114,24 @@ class TableNotesViewController: UIViewController, UITableViewDelegate, UITableVi
         notesTableView.reloadData()
     }
 
-    @IBAction func exitDeleteMode(_ sender: Any) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == SegueToNote) {
+            if sender is Note {
+                if let detailsController = segue.destination as? NoteViewController {
+                    detailsController.currentNote = (sender as? Note)!
+                }
+            }
+        }
+    }
+    
+    @IBAction internal func exitDeleteMode(_ sender: Any) {
         deleteModeOn = false
         selectedNotesIndex.removeAll()
         loadInitialSettings()
         notesTableView.reloadData()
     }
     
-    @IBAction func didTapOnRightBarButton(_ sender: Any) {
+    @IBAction internal func didTapOnRightBarButton(_ sender: Any) {
         if !deleteModeOn {
             self.performSegue(withIdentifier: SegueToLogin, sender: loginBarButton)
         } else {

@@ -26,12 +26,8 @@ class NoteTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setGestureRecognizer()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
-    func loadCell(note: NoteClass, isDeleteModeOn: Bool, isSelected: Bool) {
+    internal func loadCell(note: Note, isDeleteModeOn: Bool, isSelected: Bool) {
         self.titleLabel.text = note.title
         self.descriptionLabel.text = note.detail
         
@@ -42,20 +38,19 @@ class NoteTableViewCell: UITableViewCell {
         }
         if !isSelected {
             shouldDeleteButton.setImage(UIImage(named: "checkbox_off.png"), for: .normal)
-            //shouldDeleteButton.image = UIImage(named: "checkbox_off.png")
         } else {
             shouldDeleteButton.setImage(UIImage(named: "checkbox_on.png"), for: .normal)
         }
     }
     
-    func setGestureRecognizer() {
+    internal func setGestureRecognizer() {
         let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(_:)))
         longPressGesture.minimumPressDuration = 1.0
         longPressGesture.delegate = self as UIGestureRecognizerDelegate
         self.addGestureRecognizer(longPressGesture)
     }
     
-    @objc func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
+    @objc internal func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
         delegate?.onCellLongTap(longPressgestureRecognizer: longPressGestureRecognizer, cell: self)
     }
 

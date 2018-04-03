@@ -12,5 +12,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var deleteButton: UIButton!
-    
+ 
+    internal func loadCell(photo:UIImage, deleteModeOn: Bool) {
+        self.deleteButton.isHidden = !deleteModeOn
+        self.photoImageView.image = photo
+    }
 }

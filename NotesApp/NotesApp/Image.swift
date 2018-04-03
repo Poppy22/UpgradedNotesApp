@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ImageClass: NSObject {
-    private(set) var fileName: String?
+class Image: NSObject {
+    private(set) var imageName: String!
     
-    func set(fileName: String) {
-        self.fileName = fileName
+    internal func set(imageName: String) {
+        self.imageName = imageName
     }
     
 }
