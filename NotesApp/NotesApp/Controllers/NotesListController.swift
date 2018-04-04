@@ -14,7 +14,6 @@ let SegueToLogin = "segueToLogin"
 
 /* FEEDBACK:
  - Use an enum to define controller states instead of bool "deleteModeOn"
- - Deselect cells after tapping them
  
  enum ListMode {
     case Normal
@@ -22,6 +21,12 @@ let SegueToLogin = "segueToLogin"
  }
  
  */
+
+enum Mode {
+    case Normal
+    case Edit
+}
+//pun si un switch?
 
 class NotesListController: UIViewController, UITableViewDelegate, UITableViewDataSource, NoteCellDelegate {
     
@@ -37,6 +42,9 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         loadInitialSettings()
+        if let index = self.notesTableView.indexPathForSelectedRow{
+            self.notesTableView.deselectRow(at: index, animated: true)
+        }
     }
     
     override func viewDidLoad() {
@@ -131,6 +139,13 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
                     detailsController.currentNote = (sender as? Note)!
                 }
             }
+        }
+    }
+    
+    @IBAction internal func addNewNote(_ sender: Any) {
+        if deleteModeOn == false {
+            let note = Note()
+            self.performSegue(withIdentifier: SegueToNote, sender: note)
         }
     }
     

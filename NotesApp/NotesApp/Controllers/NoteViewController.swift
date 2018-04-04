@@ -14,8 +14,7 @@ class NoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
 UINavigationControllerDelegate {
     
     @IBOutlet weak var imagesCollectionView: UICollectionView!
-    @IBOutlet weak var noteTitle: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var noteTitleTextField: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var lastEditLabel: UILabel!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
@@ -25,16 +24,22 @@ UINavigationControllerDelegate {
     var deleteModeOn = false
     
     override func viewWillAppear(_ animated: Bool) {
-        if collectionData.count == 0 {
-            collectionViewHeight.constant = 0.0
-        } else {
-            collectionViewHeight.constant = 150
-        }
+        loadCell()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    internal func loadCell() {
+        noteTitleTextField.text = currentNote.title
+        noteTextView.text = currentNote.detail
+        if collectionData.count == 0 {
+            collectionViewHeight.constant = 0.0
+        } else {
+            collectionViewHeight.constant = 150
+        }
     }
     
     // ----- ADD DATA TO COLLECTION VIEW -----
@@ -54,7 +59,7 @@ UINavigationControllerDelegate {
         return cell
     }
     
-    // ------ ADD IMAGE FROM CAMERA OF GALLERY --------
+    // ------ ADD IMAGE FROM CAMERA OR GALLERY --------
     
     @IBAction private func addImagesToNote(_ sender: Any) {
         addImage()

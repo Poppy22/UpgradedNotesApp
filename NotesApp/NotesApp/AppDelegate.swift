@@ -9,8 +9,12 @@
 import UIKit
 import CoreData
 
-/* FEEDBACK:
- - Don't use just groups for classes, use also folders on the disk and maintain the same hierarchy
+/* To ask:
+ - login with fb screen: poza cu logo Fb constrangere peste buton
+ - despre enum
+ - selectarea unei celule pentru a fi stearsa nu merge cand dau click pe butonul cu casuta din dreapta: why?
+ - eliminare isSelected si using storyboard states
+ - double screen :))))
  */
 
 @UIApplicationMain

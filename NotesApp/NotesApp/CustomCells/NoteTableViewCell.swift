@@ -13,7 +13,6 @@ protocol NoteCellDelegate {
 }
 
 /* FEEDBACK:
- - Use image literals instead of UIImage constructor
  - Selection management is automatic, you don't need to manage it by yourself (isSelected)
  - UIImageViews has multiple states (normal / highlighted) you can configure the two different images from the storyboard and the selection / highlight will work automatically
  */
@@ -43,9 +42,9 @@ class NoteTableViewCell: UITableViewCell {
             self.checkButtonWidth.constant = 55
         }
         if !isSelected {
-            shouldDeleteButton.setImage(UIImage(named: "checkbox_off.png"), for: .normal)
+            shouldDeleteButton.setImage(#imageLiteral(resourceName: "checkbox_off"), for: .normal)
         } else {
-            shouldDeleteButton.setImage(UIImage(named: "checkbox_on.png"), for: .normal)
+            shouldDeleteButton.setImage(#imageLiteral(resourceName: "checkbox_on"), for: .normal)
         }
     }
     

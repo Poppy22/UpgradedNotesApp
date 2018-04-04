@@ -66,7 +66,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMs-Y3-FWC">
+                                                <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMs-Y3-FWC">
                                                     <rect key="frame" x="305" y="22.5" width="55" height="55"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="Bcz-hd-eVd"/>
@@ -128,6 +128,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="btn_fab_normal"/>
                                 <connections>
+                                    <action selector="addNewNote:" destination="BYZ-38-t0r" eventType="touchUpInside" id="loW-dB-L3u"/>
                                     <segue destination="rRv-4z-h9a" kind="show" identifier="segueToNote" id="FKH-HV-0U6"/>
                                 </connections>
                             </button>
@@ -313,12 +314,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="645-JW-k5o">
-                                <rect key="frame" x="15" y="229" width="345" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Note" translatesAutoresizingMaskIntoConstraints="NO" id="LRG-vZ-WtC">
                                 <rect key="frame" x="15" y="268" width="345" height="337"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -342,25 +337,31 @@
                                     <constraint firstAttribute="height" constant="2" id="Trk-q5-fll"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" placeholder="Title" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="9Su-Ws-hVn">
+                                <rect key="frame" x="15" y="229" width="345" height="24"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LRG-vZ-WtC" firstAttribute="top" secondItem="9Su-Ws-hVn" secondAttribute="bottom" constant="15" id="29S-lB-9HJ"/>
                             <constraint firstItem="LRG-vZ-WtC" firstAttribute="leading" secondItem="Pa6-Jq-hNv" secondAttribute="leading" constant="15" id="98w-VM-9Um"/>
                             <constraint firstItem="Pa6-Jq-hNv" firstAttribute="trailing" secondItem="V4S-MH-a8G" secondAttribute="trailing" constant="15" id="FEN-nU-112"/>
                             <constraint firstItem="V4S-MH-a8G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0A4-x3-Ztg" secondAttribute="leading" constant="20" symbolic="YES" id="Igj-X2-p0G"/>
                             <constraint firstItem="xoU-A3-Awx" firstAttribute="leading" secondItem="0A4-x3-Ztg" secondAttribute="leadingMargin" id="IpM-VE-7ED"/>
                             <constraint firstItem="V4S-MH-a8G" firstAttribute="top" secondItem="xoU-A3-Awx" secondAttribute="bottom" constant="10" id="KTd-Ad-WXh"/>
+                            <constraint firstItem="9Su-Ws-hVn" firstAttribute="leading" secondItem="Pa6-Jq-hNv" secondAttribute="leading" constant="15" id="Thp-Jm-3OH"/>
                             <constraint firstItem="KjH-jC-Lk8" firstAttribute="leading" secondItem="Pa6-Jq-hNv" secondAttribute="leading" id="U6m-Zn-6QV"/>
                             <constraint firstItem="xoU-A3-Awx" firstAttribute="top" secondItem="LRG-vZ-WtC" secondAttribute="bottom" constant="15" id="Vvw-h2-BRD"/>
                             <constraint firstItem="KjH-jC-Lk8" firstAttribute="trailing" secondItem="Pa6-Jq-hNv" secondAttribute="trailing" id="Wcz-BU-TPA"/>
-                            <constraint firstItem="645-JW-k5o" firstAttribute="leading" secondItem="Pa6-Jq-hNv" secondAttribute="leading" constant="15" id="cMI-ab-XkV"/>
                             <constraint firstItem="xoU-A3-Awx" firstAttribute="trailing" secondItem="0A4-x3-Ztg" secondAttribute="trailingMargin" id="eMc-0h-eLh"/>
-                            <constraint firstItem="LRG-vZ-WtC" firstAttribute="top" secondItem="645-JW-k5o" secondAttribute="bottom" constant="15" id="gi1-9u-1Wt"/>
                             <constraint firstItem="Pa6-Jq-hNv" firstAttribute="trailing" secondItem="LRG-vZ-WtC" secondAttribute="trailing" constant="15" id="j1N-si-Mcc"/>
+                            <constraint firstItem="9Su-Ws-hVn" firstAttribute="top" secondItem="KjH-jC-Lk8" secondAttribute="bottom" constant="15" id="l34-ia-hBE"/>
                             <constraint firstItem="KjH-jC-Lk8" firstAttribute="top" secondItem="Pa6-Jq-hNv" secondAttribute="top" id="opx-aS-6r6"/>
-                            <constraint firstItem="Pa6-Jq-hNv" firstAttribute="trailing" secondItem="645-JW-k5o" secondAttribute="trailing" constant="15" id="rwB-OM-SF1"/>
                             <constraint firstItem="Pa6-Jq-hNv" firstAttribute="bottom" secondItem="V4S-MH-a8G" secondAttribute="bottom" constant="15" id="u83-1V-N91"/>
-                            <constraint firstItem="645-JW-k5o" firstAttribute="top" secondItem="KjH-jC-Lk8" secondAttribute="bottom" constant="15" id="xFJ-Lm-CcK"/>
+                            <constraint firstItem="Pa6-Jq-hNv" firstAttribute="trailing" secondItem="9Su-Ws-hVn" secondAttribute="trailing" constant="15" id="zsL-UM-sSC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pa6-Jq-hNv"/>
                     </view>
@@ -376,7 +377,7 @@
                         <outlet property="imagesCollectionView" destination="KjH-jC-Lk8" id="f6b-JG-mdp"/>
                         <outlet property="lastEditLabel" destination="V4S-MH-a8G" id="0tg-CD-onk"/>
                         <outlet property="noteTextView" destination="LRG-vZ-WtC" id="AZl-nV-BPw"/>
-                        <outlet property="titleLabel" destination="645-JW-k5o" id="YTc-1D-V16"/>
+                        <outlet property="noteTitleTextField" destination="9Su-Ws-hVn" id="vrU-vM-LZD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zkQ-K5-jDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -407,7 +408,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhm-bq-MnJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="319" y="77"/>
+            <point key="canvasLocation" x="537" y="74"/>
         </scene>
     </scenes>
     <resources>
