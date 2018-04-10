@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A2E816EFF6BF3EB7C84B9E5A /* Pods_NotesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5EC01BAF30D30D9BE0EDA5A /* Pods_NotesApp.framework */; };
 		F45DD9C52066B26A00A18FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DD9C42066B26A00A18FA5 /* AppDelegate.swift */; };
 		F45DD9CA2066B26A00A18FA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45DD9C82066B26A00A18FA5 /* Main.storyboard */; };
 		F45DD9CD2066B26A00A18FA5 /* NotesApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F45DD9CB2066B26A00A18FA5 /* NotesApp.xcdatamodeld */; };
@@ -41,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CD51F478F98F68DF2B94839 /* Pods-NotesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotesApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotesApp/Pods-NotesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		359CD7C243C52B52A854CF91 /* Pods-NotesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotesApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotesApp/Pods-NotesApp.release.xcconfig"; sourceTree = "<group>"; };
+		A5EC01BAF30D30D9BE0EDA5A /* Pods_NotesApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotesApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45DD9C12066B26A00A18FA5 /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45DD9C42066B26A00A18FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F45DD9C92066B26A00A18FA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2E816EFF6BF3EB7C84B9E5A /* Pods_NotesApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +93,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		667C46679419E0997B7D2F04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5EC01BAF30D30D9BE0EDA5A /* Pods_NotesApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C3D89B319F97C20D7D19637 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0CD51F478F98F68DF2B94839 /* Pods-NotesApp.debug.xcconfig */,
+				359CD7C243C52B52A854CF91 /* Pods-NotesApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F45DD9B82066B26A00A18FA5 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +117,8 @@
 				F45DD9DB2066B26A00A18FA5 /* NotesAppTests */,
 				F45DD9E62066B26A00A18FA5 /* NotesAppUITests */,
 				F45DD9C22066B26A00A18FA5 /* Products */,
+				8C3D89B319F97C20D7D19637 /* Pods */,
+				667C46679419E0997B7D2F04 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,9 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F45DD9EC2066B26A00A18FA5 /* Build configuration list for PBXNativeTarget "NotesApp" */;
 			buildPhases = (
+				8CF6DBE214F2262A95A7A6C2 /* [CP] Check Pods Manifest.lock */,
 				F45DD9BD2066B26A00A18FA5 /* Sources */,
 				F45DD9BE2066B26A00A18FA5 /* Frameworks */,
 				F45DD9BF2066B26A00A18FA5 /* Resources */,
+				4A2D249C1D8FF3AD31D7FF41 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -314,6 +340,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4A2D249C1D8FF3AD31D7FF41 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NotesApp/Pods-NotesApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NotesApp/Pods-NotesApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CF6DBE214F2262A95A7A6C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NotesApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F45DD9BD2066B26A00A18FA5 /* Sources */ = {
@@ -492,6 +567,7 @@
 		};
 		F45DD9ED2066B26A00A18FA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CD51F478F98F68DF2B94839 /* Pods-NotesApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -508,6 +584,7 @@
 		};
 		F45DD9EE2066B26A00A18FA5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 359CD7C243C52B52A854CF91 /* Pods-NotesApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

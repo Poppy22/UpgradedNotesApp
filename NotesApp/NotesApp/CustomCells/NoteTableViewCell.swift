@@ -32,14 +32,15 @@ class NoteTableViewCell: UITableViewCell {
         setGestureRecognizer()
     }
     
-    internal func loadCell(note: Note, isDeleteModeOn: Bool, isSelected: Bool) {
+    internal func loadCell(note: Note, mode: Mode, isSelected: Bool) {
         self.titleLabel.text = note.title
         self.descriptionLabel.text = note.detail
         
-        if !isDeleteModeOn {
-            self.checkBoxWidth.constant = 0
-        } else {
-            self.checkBoxWidth.constant = 55
+        switch mode {
+            case .Normal:
+                self.checkBoxWidth.constant = 0
+            case .Edit:
+                self.checkBoxWidth.constant = 55
         }
         
         checkBoxImageView.isHighlighted = isSelected

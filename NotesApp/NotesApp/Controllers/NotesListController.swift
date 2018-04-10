@@ -16,6 +16,7 @@ enum Mode {
     case Normal
     case Edit
 }
+var screenMode: Mode = .Normal
 
 class NotesListController: UIViewController, UITableViewDelegate, UITableViewDataSource, NoteCellDelegate {
     
@@ -26,18 +27,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var notesTableView: UITableView!
     
     var notesArray = [Note]()
-    var deleteModeOn = false
     var selectedNotesIndex = [Int]()
-    
-    var screenMode: Mode = .Normal
-    switch screenMode {
-        case .Normal:
-            deleteModeBarButton.image = nil
-            self.title = ""
-            loginBarButton.image = #imageLiteral(resourceName: "ic_nav_profile")
-        case .Edit:
-            deleteModeBarButton.image = #imageLiteral(resourceName: "ic_nav_close")
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         loadInitialSettings()
@@ -57,13 +47,17 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     
         noNotesView.isHidden = !(notesArray.count == 0)
         notesTableView.isHidden = (notesArray.count == 0)
-        if deleteModeOn {
-            deleteModeBarButton.image = #imageLiteral(resourceName: "ic_nav_close")
-        } else {
-            deleteModeBarButton.image = nil
+        
+        switch screenMode {
+            case .Normal:
+                deleteModeBarButton.image = nil
+                self.title = ""
+                loginBarButton.image = #imageLiteral(resourceName: "ic_nav_profile")
+            case .Edit:
+                deleteModeBarButton.image = #imageLiteral(resourceName: "ic_nav_close")
+                loginBarButton.image = #imageLiteral(resourceName: "ic_trash")
         }
-        self.title = ""
-        loginBarButton.image = #imageLiteral(resourceName: "ic_nav_profile")
+        notesTableView.reloadData()
     }
     
     internal func populateTableWithMockData() {
@@ -82,26 +76,29 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: NoteIdentifier, for: indexPath as IndexPath) as! NoteTableViewCell
         let note = notesArray[indexPath.row]
         cell.delegate = self
-        cell.loadCell(note: note, isDeleteModeOn: deleteModeOn, isSelected: selectedNotesIndex.contains(indexPath.row))
+        cell.loadCell(note: note, mode: screenMode, isSelected: selectedNotesIndex.contains(indexPath.row))
         return cell
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !deleteModeOn {
-            let currentNote = notesArray[indexPath.row]
-            self.performSegue(withIdentifier: SegueToNote, sender: currentNote)
-        } else {
-            if selectedNotesIndex.contains(indexPath.row) {
-                let index = selectedNotesIndex.index(of: indexPath.row)
-                selectedNotesIndex.remove(at: index!)
-            } else {
-                selectedNotesIndex.insert(indexPath.row, at: 0)
-            }
+        print(indexPath.row)
+        switch screenMode {
+            case .Normal:
+                let currentNote = notesArray[indexPath.row]
+                self.performSegue(withIdentifier: SegueToNote, sender: currentNote)
+            case .Edit:
+                if selectedNotesIndex.contains(indexPath.row) {
+                    let index = selectedNotesIndex.index(of: indexPath.row)
+                    selectedNotesIndex.remove(at: index!)
+                } else {
+                    selectedNotesIndex.insert(indexPath.row, at: 0)
+                }
+        }
             notesTableView.reloadData()
             self.title = String(selectedNotesIndex.count)
-        }
     }
     
+   
     //long press on a cell to enter delete mode
     internal func onCellLongTap(longPressgestureRecognizer: UILongPressGestureRecognizer, cell: UITableViewCell) {
         if longPressgestureRecognizer.state == UIGestureRecognizerState.began {
@@ -109,7 +106,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
             if let indexPath = notesTableView.indexPath(for: cell) {
                 loginBarButton.image = #imageLiteral(resourceName: "ic_trash")
                 deleteModeBarButton.image = #imageLiteral(resourceName: "ic_close_popup")
-                deleteModeOn = true
+                screenMode = .Edit
                 selectedNotesIndex.append(indexPath.row)
                 notesTableView.reloadData()
                 self.title = String(selectedNotesIndex.count)
@@ -126,9 +123,8 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
             selectedNotesIndex.remove(at: index!)
             self.notesArray.remove(at: noteIndex)
         }
-        deleteModeOn = false
+        screenMode = .Normal
         loadInitialSettings()
-        notesTableView.reloadData()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -142,29 +138,29 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction internal func addNewNote(_ sender: Any) {
-        if deleteModeOn == false {
+        if screenMode == .Normal {
             let note = Note()
             self.performSegue(withIdentifier: SegueToNote, sender: note)
         }
     }
     
     @IBAction internal func exitDeleteMode(_ sender: Any) {
-        deleteModeOn = false
+        screenMode = .Normal
         selectedNotesIndex.removeAll()
         loadInitialSettings()
-        notesTableView.reloadData()
     }
     
     @IBAction internal func didTapOnRightBarButton(_ sender: Any) {
-        if !deleteModeOn {
-            self.performSegue(withIdentifier: SegueToLogin, sender: loginBarButton)
-        } else {
-            let alertController = UIAlertController(title: nil, message: "Are you sure you want to permanently delete these notes?", preferredStyle: .alert)
-            let defaultActionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-            let defaultActionDelete = UIAlertAction(title: "Delete", style: .default, handler: deleteSelectedNotes)
-            alertController.addAction(defaultActionCancel)
-            alertController.addAction(defaultActionDelete)
-            present(alertController, animated: true, completion: nil)
+        switch screenMode {
+            case .Normal:
+                self.performSegue(withIdentifier: SegueToLogin, sender: loginBarButton)
+            case .Edit:
+                let alertController = UIAlertController(title: nil, message: "Are you sure you want to permanently delete these notes?", preferredStyle: .alert)
+                let defaultActionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                let defaultActionDelete = UIAlertAction(title: "Delete", style: .default, handler: deleteSelectedNotes)
+                alertController.addAction(defaultActionCancel)
+                alertController.addAction(defaultActionDelete)
+                present(alertController, animated: true, completion: nil)
         }
     }
 }
