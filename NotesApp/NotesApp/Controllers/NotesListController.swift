@@ -12,21 +12,10 @@ let NoteIdentifier = "noteCell"
 let SegueToNote = "segueToNote"
 let SegueToLogin = "segueToLogin"
 
-/* FEEDBACK:
- - Use an enum to define controller states instead of bool "deleteModeOn"
- 
- enum ListMode {
-    case Normal
-    case Edit
- }
- 
- */
-
 enum Mode {
     case Normal
     case Edit
 }
-//pun si un switch?
 
 class NotesListController: UIViewController, UITableViewDelegate, UITableViewDataSource, NoteCellDelegate {
     
@@ -39,6 +28,16 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     var notesArray = [Note]()
     var deleteModeOn = false
     var selectedNotesIndex = [Int]()
+    
+    var screenMode: Mode = .Normal
+    switch screenMode {
+        case .Normal:
+            deleteModeBarButton.image = nil
+            self.title = ""
+            loginBarButton.image = #imageLiteral(resourceName: "ic_nav_profile")
+        case .Edit:
+            deleteModeBarButton.image = #imageLiteral(resourceName: "ic_nav_close")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         loadInitialSettings()

@@ -22,8 +22,8 @@ class NoteTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var shouldDeleteButton: UIButton!
-    @IBOutlet weak var checkButtonWidth: NSLayoutConstraint!
+    @IBOutlet weak var checkBoxImageView: UIImageView!
+    @IBOutlet weak var checkBoxWidth: NSLayoutConstraint!
     
     var delegate: NoteCellDelegate?
     
@@ -37,15 +37,17 @@ class NoteTableViewCell: UITableViewCell {
         self.descriptionLabel.text = note.detail
         
         if !isDeleteModeOn {
-            self.checkButtonWidth.constant = 0
+            self.checkBoxWidth.constant = 0
         } else {
-            self.checkButtonWidth.constant = 55
+            self.checkBoxWidth.constant = 55
         }
-        if !isSelected {
-            shouldDeleteButton.setImage(#imageLiteral(resourceName: "checkbox_off"), for: .normal)
+        
+        checkBoxImageView.isHighlighted = isSelected
+        /*if !isSelected {
+            checkBoxImageView.image = #imageLiteral(resourceName: "checkbox_off")
         } else {
-            shouldDeleteButton.setImage(#imageLiteral(resourceName: "checkbox_on"), for: .normal)
-        }
+            checkBoxImageView.image = #imageLiteral(resourceName: "checkbox_on")
+        }*/
     }
     
     internal func setGestureRecognizer() {

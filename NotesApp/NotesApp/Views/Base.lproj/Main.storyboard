@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,7 +44,7 @@
                                     <constraint firstItem="7kL-gd-agj" firstAttribute="centerX" secondItem="R98-Bo-am0" secondAttribute="centerX" id="mAJ-SY-a1c"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TNI-ZA-VcU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TNI-ZA-VcU">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -55,25 +56,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qp-3d-4Ei">
-                                                    <rect key="frame" x="91" y="10" width="204" height="48"/>
+                                                    <rect key="frame" x="91" y="10" width="188" height="48"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67C-YK-TVe">
-                                                    <rect key="frame" x="91" y="68" width="204" height="21"/>
+                                                    <rect key="frame" x="91" y="68" width="188" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMs-Y3-FWC">
-                                                    <rect key="frame" x="305" y="22.5" width="55" height="55"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="55" id="Bcz-hd-eVd"/>
-                                                        <constraint firstAttribute="height" constant="55" id="gfE-ry-VtN"/>
-                                                    </constraints>
-                                                    <state key="normal" backgroundImage="checkbox_off"/>
-                                                </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_note_image" translatesAutoresizingMaskIntoConstraints="NO" id="jMG-vs-bGq">
                                                     <rect key="frame" x="15" y="11" width="66" height="66"/>
                                                     <constraints>
@@ -88,29 +81,36 @@
                                                         <constraint firstAttribute="height" constant="2" id="aJw-gz-gfn"/>
                                                     </constraints>
                                                 </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkbox_off" highlightedImage="checkbox_on" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g1f-hq-CNJ">
+                                                    <rect key="frame" x="284" y="11" width="76" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="76" id="ZV9-s8-yuv"/>
+                                                        <constraint firstAttribute="height" constant="64" id="weC-RQ-jYT"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="y5P-M7-OIP" firstAttribute="leading" secondItem="g9x-Go-VAM" secondAttribute="leadingMargin" constant="-15" id="7so-KV-jCZ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="vMs-Y3-FWC" secondAttribute="trailing" id="BY3-V1-4zF"/>
                                                 <constraint firstItem="8qp-3d-4Ei" firstAttribute="top" secondItem="g9x-Go-VAM" secondAttribute="top" constant="10" id="CCP-6q-fMT"/>
-                                                <constraint firstItem="vMs-Y3-FWC" firstAttribute="centerY" secondItem="g9x-Go-VAM" secondAttribute="centerY" id="Eqa-mL-hzT"/>
+                                                <constraint firstItem="g1f-hq-CNJ" firstAttribute="top" secondItem="g9x-Go-VAM" secondAttribute="topMargin" id="Htv-rN-q9C"/>
+                                                <constraint firstItem="g1f-hq-CNJ" firstAttribute="trailing" secondItem="g9x-Go-VAM" secondAttribute="trailingMargin" id="LdV-3F-4U1"/>
                                                 <constraint firstItem="jMG-vs-bGq" firstAttribute="top" secondItem="g9x-Go-VAM" secondAttribute="topMargin" id="Reb-oh-Low"/>
-                                                <constraint firstItem="vMs-Y3-FWC" firstAttribute="leading" secondItem="67C-YK-TVe" secondAttribute="trailing" constant="10" id="W81-yd-ecS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="y5P-M7-OIP" secondAttribute="trailing" constant="-15" id="XPe-lb-Hvb"/>
                                                 <constraint firstItem="8qp-3d-4Ei" firstAttribute="leading" secondItem="jMG-vs-bGq" secondAttribute="trailing" constant="10" id="cMA-Ne-jTh"/>
                                                 <constraint firstItem="y5P-M7-OIP" firstAttribute="top" secondItem="67C-YK-TVe" secondAttribute="bottom" constant="8" symbolic="YES" id="cmW-1S-ECa"/>
-                                                <constraint firstItem="vMs-Y3-FWC" firstAttribute="leading" secondItem="8qp-3d-4Ei" secondAttribute="trailing" constant="10" id="fur-R3-1Op"/>
                                                 <constraint firstItem="67C-YK-TVe" firstAttribute="top" secondItem="8qp-3d-4Ei" secondAttribute="bottom" constant="10" id="gP5-CC-Gc0"/>
                                                 <constraint firstItem="jMG-vs-bGq" firstAttribute="leading" secondItem="g9x-Go-VAM" secondAttribute="leadingMargin" id="hb5-G8-vzM"/>
+                                                <constraint firstItem="67C-YK-TVe" firstAttribute="trailing" secondItem="8qp-3d-4Ei" secondAttribute="trailing" id="hm4-Su-1sY"/>
                                                 <constraint firstItem="67C-YK-TVe" firstAttribute="leading" secondItem="jMG-vs-bGq" secondAttribute="trailing" constant="10" id="lgJ-QR-bGg"/>
                                                 <constraint firstItem="y5P-M7-OIP" firstAttribute="bottom" secondItem="g9x-Go-VAM" secondAttribute="bottomMargin" constant="10" id="xRR-NH-HHJ"/>
+                                                <constraint firstItem="g1f-hq-CNJ" firstAttribute="leading" secondItem="8qp-3d-4Ei" secondAttribute="trailing" constant="5" id="xbP-dS-V33"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="checkButtonWidth" destination="Bcz-hd-eVd" id="fzj-o2-kzY"/>
+                                            <outlet property="checkBoxImageView" destination="g1f-hq-CNJ" id="Lx5-hE-BCF"/>
+                                            <outlet property="checkBoxWidth" destination="ZV9-s8-yuv" id="LgP-vn-P6Z"/>
                                             <outlet property="descriptionLabel" destination="67C-YK-TVe" id="qui-yh-rqy"/>
                                             <outlet property="iconImageView" destination="jMG-vs-bGq" id="cdz-EI-UFw"/>
-                                            <outlet property="shouldDeleteButton" destination="vMs-Y3-FWC" id="wJS-c1-9Q6"/>
                                             <outlet property="titleLabel" destination="8qp-3d-4Ei" id="OQx-6m-c3h"/>
                                         </connections>
                                     </tableViewCell>
@@ -129,7 +129,6 @@
                                 <state key="normal" backgroundImage="btn_fab_normal"/>
                                 <connections>
                                     <action selector="addNewNote:" destination="BYZ-38-t0r" eventType="touchUpInside" id="loW-dB-L3u"/>
-                                    <segue destination="rRv-4z-h9a" kind="show" identifier="segueToNote" id="FKH-HV-0U6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -168,11 +167,12 @@
                         <outlet property="noNotesView" destination="R98-Bo-am0" id="RPx-oD-u1s"/>
                         <outlet property="notesTableView" destination="TNI-ZA-VcU" id="63E-2t-cGy"/>
                         <segue destination="F1j-E6-Onc" kind="show" identifier="segueToLogin" id="hct-p9-pgE"/>
+                        <segue destination="rRv-4z-h9a" kind="show" identifier="segueToNote" id="fj1-Lt-uMh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1220" y="74.212893553223395"/>
+            <point key="canvasLocation" x="1280.8" y="72.413793103448285"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="2vK-bz-cUA">
@@ -214,7 +214,7 @@
                                     <constraint firstAttribute="height" constant="45" id="LTT-es-iVM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <state key="normal" title="     Login with Facebook">
+                                <state key="normal" title="Login with Facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -230,6 +230,7 @@
                             <constraint firstItem="UN9-8D-k0a" firstAttribute="trailing" secondItem="fvZ-fL-lcV" secondAttribute="trailing" constant="259" id="8de-fz-6O4"/>
                             <constraint firstAttribute="trailing" secondItem="knA-ti-VKu" secondAttribute="trailing" constant="52" id="EZm-9f-5br"/>
                             <constraint firstItem="JNU-82-U3H" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kIq-F4-TiI" secondAttribute="trailing" constant="8" symbolic="YES" id="KkB-4d-SyB"/>
+                            <constraint firstItem="dSI-MW-H01" firstAttribute="width" secondItem="nMJ-5C-BNe" secondAttribute="height" multiplier="8:23" id="Q1c-5P-n2i"/>
                             <constraint firstItem="U7u-ho-LZR" firstAttribute="top" secondItem="dSI-MW-H01" secondAttribute="bottom" id="QdC-RS-hmd"/>
                             <constraint firstItem="dSI-MW-H01" firstAttribute="centerY" secondItem="UN9-8D-k0a" secondAttribute="centerY" id="Qhq-Ht-yIf"/>
                             <constraint firstItem="kIq-F4-TiI" firstAttribute="top" secondItem="UN9-8D-k0a" secondAttribute="top" constant="100" id="YcX-7q-a49"/>
@@ -416,6 +417,7 @@
         <image name="bg_profile" width="320" height="320"/>
         <image name="btn_fab_normal" width="55" height="55"/>
         <image name="checkbox_off" width="44" height="44"/>
+        <image name="checkbox_on" width="44" height="44"/>
         <image name="ic_facebook" width="44" height="44"/>
         <image name="ic_nav_attach" width="22" height="22"/>
         <image name="ic_nav_close" width="22" height="22"/>
