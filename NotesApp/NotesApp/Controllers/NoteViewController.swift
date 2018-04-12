@@ -42,6 +42,15 @@ UINavigationControllerDelegate {
         }
     }
     
+    private func addNewNote() {
+        currentNote.set(title: noteTitleTextField.text!, detail: noteTextView.text, images: [], id: "100", lastUpdate: 100)
+    }
+    
+    @IBAction func goToMainScreen(_ sender: Any) {
+        addNewNote()
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     // ----- ADD DATA TO COLLECTION VIEW -----
     
     internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -1,8 +1,0 @@
-platform :ios, '11.0'
-
-target 'NotesApp' do
-  use_frameworks!
-  pod 'FacebookCore'
-  pod 'FacebookLogin'
-  pod 'SDWebImage', '~>3.7'
-end

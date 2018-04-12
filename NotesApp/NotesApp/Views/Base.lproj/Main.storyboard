@@ -55,59 +55,59 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qp-3d-4Ei">
-                                                    <rect key="frame" x="81" y="10" width="199" height="48"/>
+                                                    <rect key="frame" x="55" y="10" width="265" height="51"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67C-YK-TVe">
-                                                    <rect key="frame" x="80" y="68" width="200" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67C-YK-TVe">
+                                                    <rect key="frame" x="55" y="63" width="265" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_note_image" translatesAutoresizingMaskIntoConstraints="NO" id="jMG-vs-bGq">
-                                                    <rect key="frame" x="15" y="11" width="66" height="66"/>
+                                                    <rect key="frame" x="5" y="1" width="50" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="66" id="kzG-f0-CMJ"/>
-                                                        <constraint firstAttribute="height" constant="66" id="rh7-cp-ZEL"/>
+                                                        <constraint firstAttribute="width" constant="50" id="5Qa-DW-twe"/>
+                                                        <constraint firstAttribute="height" constant="50" id="px9-Vy-U5S"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5P-M7-OIP">
-                                                    <rect key="frame" x="0.0" y="97" width="375" height="2"/>
+                                                    <rect key="frame" x="0.0" y="99" width="375" height="1"/>
                                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="2" id="aJw-gz-gfn"/>
+                                                        <constraint firstAttribute="height" constant="1" id="aJw-gz-gfn"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkbox_off" highlightedImage="checkbox_on" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g1f-hq-CNJ">
-                                                    <rect key="frame" x="285" y="11" width="75" height="60"/>
+                                                    <rect key="frame" x="320" y="11" width="50" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="75" id="ZV9-s8-yuv"/>
-                                                        <constraint firstAttribute="height" constant="60" id="weC-RQ-jYT"/>
+                                                        <constraint firstAttribute="height" constant="50" id="UHq-7x-wMJ"/>
+                                                        <constraint firstAttribute="width" constant="50" id="apl-gh-6nl"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="y5P-M7-OIP" firstAttribute="leading" secondItem="g9x-Go-VAM" secondAttribute="leadingMargin" constant="-15" id="7so-KV-jCZ"/>
-                                                <constraint firstItem="8qp-3d-4Ei" firstAttribute="top" secondItem="g9x-Go-VAM" secondAttribute="top" constant="10" id="CCP-6q-fMT"/>
-                                                <constraint firstItem="g1f-hq-CNJ" firstAttribute="top" secondItem="g9x-Go-VAM" secondAttribute="topMargin" id="Htv-rN-q9C"/>
-                                                <constraint firstItem="g1f-hq-CNJ" firstAttribute="trailing" secondItem="g9x-Go-VAM" secondAttribute="trailingMargin" id="LdV-3F-4U1"/>
-                                                <constraint firstItem="jMG-vs-bGq" firstAttribute="top" secondItem="g9x-Go-VAM" secondAttribute="topMargin" id="Reb-oh-Low"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="y5P-M7-OIP" secondAttribute="trailing" constant="-15" id="XPe-lb-Hvb"/>
-                                                <constraint firstItem="8qp-3d-4Ei" firstAttribute="leading" secondItem="jMG-vs-bGq" secondAttribute="trailing" id="cMA-Ne-jTh"/>
-                                                <constraint firstItem="y5P-M7-OIP" firstAttribute="top" secondItem="67C-YK-TVe" secondAttribute="bottom" constant="8" symbolic="YES" id="cmW-1S-ECa"/>
-                                                <constraint firstItem="67C-YK-TVe" firstAttribute="top" secondItem="8qp-3d-4Ei" secondAttribute="bottom" constant="10" id="gP5-CC-Gc0"/>
-                                                <constraint firstItem="jMG-vs-bGq" firstAttribute="leading" secondItem="g9x-Go-VAM" secondAttribute="leadingMargin" id="hb5-G8-vzM"/>
-                                                <constraint firstItem="67C-YK-TVe" firstAttribute="trailing" secondItem="8qp-3d-4Ei" secondAttribute="trailing" id="hm4-Su-1sY"/>
-                                                <constraint firstItem="67C-YK-TVe" firstAttribute="leading" secondItem="jMG-vs-bGq" secondAttribute="trailing" constant="-1" id="lgJ-QR-bGg"/>
-                                                <constraint firstItem="y5P-M7-OIP" firstAttribute="bottom" secondItem="g9x-Go-VAM" secondAttribute="bottomMargin" constant="10" id="xRR-NH-HHJ"/>
-                                                <constraint firstItem="g1f-hq-CNJ" firstAttribute="leading" secondItem="8qp-3d-4Ei" secondAttribute="trailing" constant="5" id="xbP-dS-V33"/>
+                                                <constraint firstAttribute="trailing" secondItem="y5P-M7-OIP" secondAttribute="trailing" id="2Kh-Sw-DCL"/>
+                                                <constraint firstItem="y5P-M7-OIP" firstAttribute="top" secondItem="67C-YK-TVe" secondAttribute="bottom" constant="15" id="5kB-wM-ALO"/>
+                                                <constraint firstItem="67C-YK-TVe" firstAttribute="leading" secondItem="8qp-3d-4Ei" secondAttribute="leading" id="5xn-1p-h9P"/>
+                                                <constraint firstItem="y5P-M7-OIP" firstAttribute="leading" secondItem="g9x-Go-VAM" secondAttribute="leading" id="CqR-ma-CaT"/>
+                                                <constraint firstItem="g1f-hq-CNJ" firstAttribute="top" secondItem="g9x-Go-VAM" secondAttribute="topMargin" id="E6a-11-It3"/>
+                                                <constraint firstItem="jMG-vs-bGq" firstAttribute="leading" secondItem="g9x-Go-VAM" secondAttribute="leadingMargin" constant="-10" id="GEg-M8-pKy"/>
+                                                <constraint firstItem="67C-YK-TVe" firstAttribute="top" secondItem="8qp-3d-4Ei" secondAttribute="bottom" constant="2" id="Hgt-05-Q4w"/>
+                                                <constraint firstItem="g1f-hq-CNJ" firstAttribute="leading" secondItem="8qp-3d-4Ei" secondAttribute="trailing" id="LQL-lQ-d3L"/>
+                                                <constraint firstItem="8qp-3d-4Ei" firstAttribute="top" secondItem="g9x-Go-VAM" secondAttribute="top" constant="10" id="YtO-Op-g5Q"/>
+                                                <constraint firstItem="67C-YK-TVe" firstAttribute="trailing" secondItem="8qp-3d-4Ei" secondAttribute="trailing" id="ZdT-RB-f9d"/>
+                                                <constraint firstAttribute="bottom" secondItem="y5P-M7-OIP" secondAttribute="bottom" id="ZzZ-ng-8GA"/>
+                                                <constraint firstItem="g1f-hq-CNJ" firstAttribute="trailing" secondItem="g9x-Go-VAM" secondAttribute="trailingMargin" constant="10" id="hBa-eT-55F"/>
+                                                <constraint firstItem="jMG-vs-bGq" firstAttribute="top" secondItem="g9x-Go-VAM" secondAttribute="topMargin" constant="-10" id="ldY-Db-hv2"/>
+                                                <constraint firstItem="8qp-3d-4Ei" firstAttribute="leading" secondItem="jMG-vs-bGq" secondAttribute="trailing" id="snt-xl-b3d"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="checkBoxImageView" destination="g1f-hq-CNJ" id="Lx5-hE-BCF"/>
-                                            <outlet property="checkBoxWidth" destination="ZV9-s8-yuv" id="LgP-vn-P6Z"/>
+                                            <outlet property="checkBoxWidth" destination="apl-gh-6nl" id="beR-H7-6wN"/>
                                             <outlet property="descriptionLabel" destination="67C-YK-TVe" id="qui-yh-rqy"/>
                                             <outlet property="iconImageView" destination="jMG-vs-bGq" id="cdz-EI-UFw"/>
                                             <outlet property="titleLabel" destination="8qp-3d-4Ei" id="OQx-6m-c3h"/>
@@ -147,6 +147,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="My notes" id="BMs-UB-qX3" colorLabel="IBBuiltInLabel-Orange">
+                        <barButtonItem key="backBarButtonItem" title="My notes" id="W4F-vF-WMK"/>
                         <barButtonItem key="leftBarButtonItem" image="ic_nav_close" id="CVK-bK-jyr">
                             <connections>
                                 <action selector="exitDeleteMode:" destination="BYZ-38-t0r" id="fGn-Up-EXQ"/>
@@ -162,6 +163,7 @@
                     <connections>
                         <outlet property="deleteModeBarButton" destination="CVK-bK-jyr" id="MCO-GL-Fu3"/>
                         <outlet property="loginBarButton" destination="hHk-Gm-NT4" id="x48-Pz-bp9"/>
+                        <outlet property="navigationItem" destination="BMs-UB-qX3" id="JHQ-fH-hit"/>
                         <outlet property="newNoteButton" destination="72L-gr-8Jh" id="fiw-mz-Hc1"/>
                         <outlet property="noNotesView" destination="R98-Bo-am0" id="RPx-oD-u1s"/>
                         <outlet property="notesTableView" destination="TNI-ZA-VcU" id="63E-2t-cGy"/>
@@ -171,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1359" y="73"/>
+            <point key="canvasLocation" x="1357.5999999999999" y="72.413793103448285"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="2vK-bz-cUA">
@@ -369,6 +371,11 @@
                         <viewLayoutGuide key="safeArea" id="Pa6-Jq-hNv"/>
                     </view>
                     <navigationItem key="navigationItem" id="iNp-PN-xEr">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="ic_nav_up" id="eIi-y4-HvU">
+                            <connections>
+                                <action selector="goToMainScreen:" destination="rRv-4z-h9a" id="a7R-47-aZB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="ic_nav_attach" id="lur-8b-TCT">
                             <connections>
                                 <action selector="addImagesToNote:" destination="rRv-4z-h9a" id="kSX-fF-o62"/>
@@ -424,6 +431,7 @@
         <image name="ic_nav_attach" width="22" height="22"/>
         <image name="ic_nav_close" width="22" height="22"/>
         <image name="ic_nav_profile" width="22" height="22"/>
+        <image name="ic_nav_up" width="22" height="22"/>
         <image name="ic_note_image" width="44" height="44"/>
         <image name="ph_profile" width="80" height="80"/>
     </resources>

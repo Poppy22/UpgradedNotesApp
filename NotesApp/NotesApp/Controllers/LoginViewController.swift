@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FacebookLogin
-import FBSDKLoginKit
 
 private let Permissions = ["public_profile", "email", "user_friends"]
 private let ButtonLogOutMessage = "LOG OUT"

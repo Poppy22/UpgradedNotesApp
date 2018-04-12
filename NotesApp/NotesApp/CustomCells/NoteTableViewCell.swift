@@ -33,6 +33,9 @@ class NoteTableViewCell: UITableViewCell {
     }
     
     internal func loadCell(note: Note, mode: Mode, isSelected: Bool) {
+        
+        self.titleLabel.isHidden = (note.title == nil)
+        self.descriptionLabel.isHidden = (note.detail == nil)
         self.titleLabel.text = note.title
         self.descriptionLabel.text = note.detail
         
@@ -41,6 +44,12 @@ class NoteTableViewCell: UITableViewCell {
                 self.checkBoxWidth.constant = 0
             case .Edit:
                 self.checkBoxWidth.constant = 55
+        }
+        
+        if note.images.count == 0 {
+            iconImageView.image = #imageLiteral(resourceName: "ic_note_text")
+        } else {
+            iconImageView.image = #imageLiteral(resourceName: "ic_note_image")
         }
         
         checkBoxImageView.isHighlighted = isSelected

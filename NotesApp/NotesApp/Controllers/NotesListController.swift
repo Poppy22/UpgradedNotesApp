@@ -11,6 +11,7 @@ import UIKit
 let NoteIdentifier = "noteCell"
 let SegueToNote = "segueToNote"
 let SegueToLogin = "segueToLogin"
+let Title = "My notes"
 
 enum Mode {
     case Normal
@@ -31,7 +32,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         loadInitialSettings()
-        if let index = self.notesTableView.indexPathForSelectedRow{
+        if let index = self.notesTableView.indexPathForSelectedRow {
             self.notesTableView.deselectRow(at: index, animated: true)
         }
     }
@@ -57,10 +58,19 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
                 deleteModeBarButton.image = #imageLiteral(resourceName: "ic_nav_close")
                 loginBarButton.image = #imageLiteral(resourceName: "ic_trash")
         }
+        self.title = Title
+        self.notesArray = self.notesArray.sorted(by: {$0.lastUpdate > $1.lastUpdate})
         notesTableView.reloadData()
     }
     
     internal func populateTableWithMockData() {
+        let note1 = Note()
+        note1.set(title: "Doar titluuuu", detail: "", images: [], id: "10", lastUpdate: 111)
+        let note2 = Note()
+        note2.set(title: "", detail: "Doar descriereeeee", images: [], id: "100", lastUpdate: 111)
+        notesArray.append(note1)
+        notesArray.append(note2)
+        
         for i in 1...20 {
             let newNote = Note()
             newNote.set(title: "Title " + String(i) + " only one line in length", detail: "A very very very very very long Description " + String(i), images: [], id: "10" + String(i), lastUpdate: 100)
@@ -87,6 +97,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
                 let currentNote = notesArray[indexPath.row]
                 self.performSegue(withIdentifier: SegueToNote, sender: currentNote)
             case .Edit:
+                self.title = String(selectedNotesIndex.count)
                 if selectedNotesIndex.contains(indexPath.row) {
                     let index = selectedNotesIndex.index(of: indexPath.row)
                     selectedNotesIndex.remove(at: index!)
@@ -95,9 +106,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
         }
             notesTableView.reloadData()
-            self.title = String(selectedNotesIndex.count)
     }
-    
    
     //long press on a cell to enter delete mode
     internal func onCellLongTap(longPressgestureRecognizer: UILongPressGestureRecognizer, cell: UITableViewCell) {
