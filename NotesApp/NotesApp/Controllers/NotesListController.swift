@@ -48,7 +48,6 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     
         noNotesView.isHidden = !(notesArray.count == 0)
         notesTableView.isHidden = (notesArray.count == 0)
-        
         switch screenMode {
             case .Normal:
                 deleteModeBarButton.image = nil

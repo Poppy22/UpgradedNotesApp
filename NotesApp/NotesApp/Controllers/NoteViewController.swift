@@ -18,10 +18,14 @@ UINavigationControllerDelegate {
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var lastEditLabel: UILabel!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var placeholderLabel: UILabel!
     
     var currentNote = Note()
     var collectionData = [Image]()
     var deleteModeOn = false
+    var isKeyboardUp = false
+    var keyboardHeight: CGFloat = 0.0
     
     override func viewWillAppear(_ animated: Bool) {
         loadCell()
@@ -35,6 +39,8 @@ UINavigationControllerDelegate {
     internal func loadCell() {
         noteTitleTextField.text = currentNote.title
         noteTextView.text = currentNote.detail
+        placeholderLabel.isHidden = !(noteTextView.text == nil)
+        
         if collectionData.count == 0 {
             collectionViewHeight.constant = 0.0
         } else {
@@ -49,6 +55,38 @@ UINavigationControllerDelegate {
     @IBAction func goToMainScreen(_ sender: Any) {
         addNewNote()
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func initializeNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    internal func textViewDidBeginEditing(_ textView: UITextView) {
+        placeholderLabel.isHidden = true
+    }
+    
+    internal func textViewDidEndEditing(_ textView: UITextView) {
+        placeholderLabel.isHidden = !(noteTextView.text == nil)
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            keyboardHeight = keyboardSize.height
+        }
+        if isKeyboardUp == false {
+            bottomConstraint.constant += keyboardHeight
+            isKeyboardUp = true
+        }
+        placeholderLabel.isHidden = true
+    }
+    
+    @objc func keyboardWillHide(sender: NSNotification) {
+        if isKeyboardUp == true {
+            bottomConstraint.constant -= keyboardHeight
+            isKeyboardUp = false
+        }
+        placeholderLabel.isHidden = !(noteTextView.text == nil)
     }
     
     // ----- ADD DATA TO COLLECTION VIEW -----
