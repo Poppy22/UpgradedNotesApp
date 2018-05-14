@@ -9,9 +9,9 @@
 import UIKit
 
 let cellIdentifier = "imageCell"
+var imageMode: Mode = .Normal
 
-class NoteViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
+class NoteViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageCellDelegate {
     
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var noteTitleTextField: UITextField!
@@ -20,6 +20,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var placeholderLabel: UILabel!
+    @IBOutlet weak var rightBarButton: UIBarButtonItem!
     
     var currentNote = Note()
     var collectionData = [Image]()
@@ -29,13 +30,14 @@ UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         loadCell()
-        print(collectionData.count)
         imagesCollectionView.reloadData()
+        rightBarButton.image = #imageLiteral(resourceName: "ic_nav_attach")
     }
     override func viewDidLoad() {
+        // Do any additional setup after loading the view.
         super.viewDidLoad()
         getLastModifiedDate()
-        // Do any additional setup after loading the view.
+        initializeNotifications()
     }
     
     internal func loadCell() {
@@ -50,19 +52,19 @@ UINavigationControllerDelegate {
         }
     }
     
-    private func addNewNote() {
-        currentNote.set(title: noteTitleTextField.text!, detail: noteTextView.text, images: [], id: "100", lastUpdate: 100)
-    }
-    
     @IBAction func goToMainScreen(_ sender: Any) {
-        addNewNote()
-        print(currentNote.title as Any)
+        currentNote.set(title: noteTitleTextField.text!, detail: noteTextView.text, images: [], id: "100", lastUpdate: Int64(Date().timeIntervalSince1970))
         self.navigationController?.popViewController(animated: true)
     }
     
     func initializeNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(NoteViewController.handleLongPress(_:)))
+        longPressGesture.minimumPressDuration = 1.0
+        longPressGesture.delegate = self as? UIGestureRecognizerDelegate
+        imagesCollectionView.addGestureRecognizer(longPressGesture)
     }
     
     internal func textViewDidBeginEditing(_ textView: UITextView) {
@@ -70,7 +72,7 @@ UINavigationControllerDelegate {
     }
     
     internal func textViewDidEndEditing(_ textView: UITextView) {
-        placeholderLabel.isHidden = !(noteTextView.text == nil)
+        placeholderLabel.isHidden = !(noteTextView.text.count == 0)
     }
     
     @objc func keyboardWillShow(sender: NSNotification) {
@@ -89,7 +91,7 @@ UINavigationControllerDelegate {
             bottomConstraint.constant -= keyboardHeight
             isKeyboardUp = false
         }
-        placeholderLabel.isHidden = !(noteTextView.text == nil)
+        placeholderLabel.isHidden = !(noteTextView.text.count == 0)
     }
     
     internal func getLastModifiedDate() {
@@ -110,25 +112,56 @@ UINavigationControllerDelegate {
         let cell:ImageCollectionViewCell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as! ImageCollectionViewCell
         
         let imageName = collectionData[indexPath.row].imageName
-        let data =  Data(base64Encoded: imageName as String!, options: NSData.Base64DecodingOptions())
-        let image = UIImage(data: data!)
-        cell.loadCell(photo: image!, deleteModeOn: deleteModeOn)
+        let image =  getImageFromDisk(named: imageName!)
+        cell.loadCell(photo: image!, mode: imageMode, indexPath: indexPath)
+        cell.delegate = self
         return cell
     }
     
     // ------ ADD IMAGE FROM CAMERA OR GALLERY --------
     
     @IBAction private func addImagesToNote(_ sender: Any) {
-        addImage()
+        switch imageMode {
+            case .Normal:
+                addImage()
+            case.Edit:
+                imageMode = .Normal
+                rightBarButton.image = #imageLiteral(resourceName: "ic_nav_attach")
+                rightBarButton.title = nil
+                imagesCollectionView.reloadData()
+        }
+    }
+    
+    private func addImage() {
+        let alertController = UIAlertController(title: nil, message: "Attach image", preferredStyle: .alert)
+        let camera = UIAlertAction(title: "Take picture", style: .default, handler: addPhotoFromCamera)
+        let gallery = UIAlertAction(title: "Choose from gallery", style: .default, handler: addPhotoFromGallery)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(camera)
+        alertController.addAction(gallery)
+        alertController.addAction(cancel)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func getImageFromDisk(named: String) -> UIImage? {
+        if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
+        } else {
+            return nil
+        }
     }
     
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let data = UIImagePNGRepresentation(pickedImage) //converts UIImage to NSData
-            let imageName = data?.base64EncodedString(options: .lineLength64Characters) //converts NSData to string
-            let image = Image()
-            image.set(imageName: imageName!)
-            collectionData.append(image)
+            let filename = "\(String(Date().timeIntervalSince1970)).png"
+            if let data = UIImagePNGRepresentation(pickedImage) {
+               if let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL {
+                    try? data.write(to: directory.appendingPathComponent(filename)!)
+                }
+            }
+            let imgFile = Image()
+            imgFile.set(imageName: filename)
+            collectionData.append(imgFile)
         }
         picker.dismiss(animated: true, completion: nil)
     }
@@ -157,15 +190,23 @@ UINavigationControllerDelegate {
         }
     }
     
-    internal func addImage() {
-        let alertController = UIAlertController(title: nil, message: "Attach image", preferredStyle: .alert)
-        let camera = UIAlertAction(title: "Take picture", style: .default, handler: addPhotoFromCamera)
-        let gallery = UIAlertAction(title: "Choose from gallery", style: .default, handler: addPhotoFromGallery)
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        alertController.addAction(camera)
-        alertController.addAction(gallery)
-        alertController.addAction(cancel)
-        present(alertController, animated: true, completion: nil)
+    // ------------ DELETE AN IMAGE -------------------
+    
+    @objc func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
+            rightBarButton.image = nil
+            rightBarButton.title = "Cancel"
+            imageMode = .Edit
+            imagesCollectionView.reloadData()
     }
     
+    internal func deletePhoto(indexPath: IndexPath) {
+        let index = indexPath.row
+        collectionData.remove(at: index)
+        imagesCollectionView.reloadData()
+        if collectionData.count == 0 {
+            collectionViewHeight.constant = 0
+            rightBarButton.image = #imageLiteral(resourceName: "ic_nav_attach")
+            rightBarButton.title = nil
+        }
+    }
 }

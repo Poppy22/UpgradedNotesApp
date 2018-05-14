@@ -8,13 +8,30 @@
 
 import UIKit
 
+protocol ImageCellDelegate {
+    func deletePhoto(indexPath: IndexPath)
+}
+
 class ImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var deleteButton: UIButton!
  
-    internal func loadCell(photo:UIImage, deleteModeOn: Bool) {
-        self.deleteButton.isHidden = !deleteModeOn
+    var delegate: ImageCellDelegate?
+    var indexPath: IndexPath!
+    
+    internal func loadCell(photo:UIImage, mode: Mode, indexPath: IndexPath) {
+        switch mode {
+            case .Normal:
+                self.deleteButton.isHidden = true
+            case .Edit:
+                self.deleteButton.isHidden = false
+        }
         self.photoImageView.image = photo
+        self.indexPath = indexPath
+    }
+
+    @IBAction func onDeleteTappedPhoto(_ sender: Any) {
+        delegate?.deletePhoto(indexPath: self.indexPath)
     }
 }

@@ -51,13 +51,7 @@ class NoteTableViewCell: UITableViewCell {
         } else {
             iconImageView.image = #imageLiteral(resourceName: "ic_note_image")
         }
-        
         checkBoxImageView.isHighlighted = isSelected
-        /*if !isSelected {
-            checkBoxImageView.image = #imageLiteral(resourceName: "checkbox_off")
-        } else {
-            checkBoxImageView.image = #imageLiteral(resourceName: "checkbox_on")
-        }*/
     }
     
     internal func setGestureRecognizer() {

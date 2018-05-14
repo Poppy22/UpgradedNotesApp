@@ -9,14 +9,6 @@
 import UIKit
 import CoreData
 
-/* To ask:
- - login with fb screen: poza cu logo Fb constrangere peste buton
- - despre enum
- - selectarea unei celule pentru a fi stearsa nu merge cand dau click pe butonul cu casuta din dreapta: why?
- - eliminare isSelected si using storyboard states
- - double screen :))))
- */
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

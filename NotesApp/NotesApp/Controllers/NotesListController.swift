@@ -72,7 +72,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
         
         for i in 1...5 {
             let newNote = Note()
-            newNote.set(title: "Title " + String(i) + " only one line in length", detail: "A very very very very very long Description " + String(i), images: [], id: "10" + String(i), lastUpdate: 100)
+            newNote.set(title: "Title " + String(i) + " only one line in length", detail: "A very very very very very very very long Description " + String(i), images: [], id: "10" + String(i), lastUpdate: Int64(Date().timeIntervalSince1970))
             notesArray.append(newNote)
         }
     }
