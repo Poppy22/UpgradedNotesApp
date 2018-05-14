@@ -323,6 +323,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="rRv-4z-h9a" id="22V-MU-POa"/>
+                                    <outlet property="delegate" destination="rRv-4z-h9a" id="Niz-JG-GKZ"/>
+                                </connections>
                             </collectionView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRG-vZ-WtC">
                                 <rect key="frame" x="15" y="268" width="345" height="337"/>

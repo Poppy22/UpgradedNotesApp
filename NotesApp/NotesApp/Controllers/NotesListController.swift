@@ -70,7 +70,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
         notesArray.append(note1)
         notesArray.append(note2)
         
-        for i in 1...20 {
+        for i in 1...5 {
             let newNote = Note()
             newNote.set(title: "Title " + String(i) + " only one line in length", detail: "A very very very very very long Description " + String(i), images: [], id: "10" + String(i), lastUpdate: 100)
             notesArray.append(newNote)
@@ -90,7 +90,6 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
         switch screenMode {
             case .Normal:
                 let currentNote = notesArray[indexPath.row]

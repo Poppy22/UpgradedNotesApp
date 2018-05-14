@@ -29,17 +29,19 @@ UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         loadCell()
+        print(collectionData.count)
+        imagesCollectionView.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getLastModifiedDate()
         // Do any additional setup after loading the view.
     }
     
     internal func loadCell() {
         noteTitleTextField.text = currentNote.title
         noteTextView.text = currentNote.detail
-        placeholderLabel.isHidden = !(noteTextView.text == nil)
+        placeholderLabel.isHidden = !(noteTextView.text.count == 0)
         
         if collectionData.count == 0 {
             collectionViewHeight.constant = 0.0
@@ -54,6 +56,7 @@ UINavigationControllerDelegate {
     
     @IBAction func goToMainScreen(_ sender: Any) {
         addNewNote()
+        print(currentNote.title as Any)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -89,6 +92,14 @@ UINavigationControllerDelegate {
         placeholderLabel.isHidden = !(noteTextView.text == nil)
     }
     
+    internal func getLastModifiedDate() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        let str = formatter.string(from: Date())
+        lastEditLabel.text = str;
+    }
+    
     // ----- ADD DATA TO COLLECTION VIEW -----
     
     internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -102,7 +113,6 @@ UINavigationControllerDelegate {
         let data =  Data(base64Encoded: imageName as String!, options: NSData.Base64DecodingOptions())
         let image = UIImage(data: data!)
         cell.loadCell(photo: image!, deleteModeOn: deleteModeOn)
-        
         return cell
     }
     
@@ -110,10 +120,9 @@ UINavigationControllerDelegate {
     
     @IBAction private func addImagesToNote(_ sender: Any) {
         addImage()
-        imagesCollectionView.reloadData()
     }
     
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let data = UIImagePNGRepresentation(pickedImage) //converts UIImage to NSData
             let imageName = data?.base64EncodedString(options: .lineLength64Characters) //converts NSData to string
@@ -124,7 +133,7 @@ UINavigationControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
     }
     
-    internal func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     
