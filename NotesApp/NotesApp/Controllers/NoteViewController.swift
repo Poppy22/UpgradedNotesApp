@@ -53,8 +53,17 @@ class NoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func goToMainScreen(_ sender: Any) {
-        currentNote.set(title: noteTitleTextField.text!, detail: noteTextView.text, images:NSSet(array :collectionData), id: UUID().uuidString, lastUpdate: Int64(Date().timeIntervalSince1970))
+        if(addedNewNote()) {
+            currentNote.set(title: noteTitleTextField.text!, detail: noteTextView.text, images:NSSet(array :collectionData), id: UUID().uuidString, lastUpdate: Int64(Date().timeIntervalSince1970))
+        }
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func addedNewNote() -> Bool {
+        if(noteTextView.text.count != 0 || noteTitleTextField.text?.count != 0 || collectionData.count != 0) {
+            return true
+        }
+        return false
     }
     
     func initializeNotifications() {
@@ -79,18 +88,12 @@ class NoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if let keyboardSize = (sender.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight = keyboardSize.height
         }
-        if isKeyboardUp == false {
-            bottomConstraint.constant += keyboardHeight
-            isKeyboardUp = true
-        }
-        placeholderLabel.isHidden = true
+        bottomConstraint.constant += keyboardHeight
+        placeholderLabel.isHidden = !(noteTextView.text.count == 0)
     }
     
     @objc func keyboardWillHide(sender: NSNotification) {
-        if isKeyboardUp == true {
-            bottomConstraint.constant -= keyboardHeight
-            isKeyboardUp = false
-        }
+        bottomConstraint.constant -= keyboardHeight
         placeholderLabel.isHidden = !(noteTextView.text.count == 0)
     }
     

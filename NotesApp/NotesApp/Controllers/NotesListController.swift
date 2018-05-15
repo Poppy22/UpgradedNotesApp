@@ -35,17 +35,15 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
         if let index = self.notesTableView.indexPathForSelectedRow {
             self.notesTableView.deselectRow(at: index, animated: true)
         }
+        notesArray = NoteDA().getAllNotes() 
     }
     
     override func viewDidLoad() {
-        populateTableWithMockData()
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
     internal func loadInitialSettings() {
-    
         noNotesView.isHidden = !(notesArray.count == 0)
         notesTableView.isHidden = (notesArray.count == 0)
         switch screenMode {
@@ -61,22 +59,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
         self.notesArray = self.notesArray.sorted(by: {$0.lastUpdate > $1.lastUpdate})
         notesTableView.reloadData()
     }
-    
-    internal func populateTableWithMockData() {
-        let note1 = Note()
-        note1.set(title: "Doar titluuuu", detail: "", images: [], id: UUID().uuidString, lastUpdate: 111)
-        let note2 = Note()
-        note2.set(title: "", detail: "Doar descriereeeee", images: [], id: UUID().uuidString, lastUpdate: 111)
-        notesArray.append(note1)
-        notesArray.append(note2)
-        
-        for i in 1...5 {
-            let newNote = Note()
-            newNote.set(title: "Title " + String(i) + " only one line in length", detail: "A very very very very very very very long Description " + String(i), images: [], id: UUID().uuidString, lastUpdate: Int64(Date().timeIntervalSince1970))
-            notesArray.append(newNote)
-        }
-    }
-    
+
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notesArray.count
     }
@@ -127,6 +110,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
         
         for noteIndex in selectedNotesIndex {
             let index = self.selectedNotesIndex.index(of: noteIndex)
+            NoteDA().deleteNote(notesArray[noteIndex])
             selectedNotesIndex.remove(at: index!)
             self.notesArray.remove(at: noteIndex)
         }
@@ -146,7 +130,7 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction internal func addNewNote(_ sender: Any) {
         if screenMode == .Normal {
-            let note = Note()
+            let note = NoteDA().createNote()
             self.performSegue(withIdentifier: SegueToNote, sender: note)
         }
     }

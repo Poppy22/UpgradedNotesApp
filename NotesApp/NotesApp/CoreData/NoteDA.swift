@@ -7,12 +7,11 @@
 //
 
 import Foundation
-
-/*class NoteDA: BaseDA {
+class NoteDA: BaseDA {
     
     override init() {
         super.init()
-        entityName = "Note"
+        entityName = "NoteEntity"
     }
     
     func createNote() -> Note {
@@ -30,4 +29,4 @@ import Foundation
         super.save()
     }
     
-}*/
+}

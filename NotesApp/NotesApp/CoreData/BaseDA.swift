@@ -1,5 +1,5 @@
 //
-//  NoteDA.swift
+//  BaseDA.swift
 //  NotesApp
 //
 //  Created by Carmen Popa on 15/05/2018.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-/*class BaseDA {
+class BaseDA {
     var defaultContext: NSManagedObjectContext!
     internal var entityName: String!
     
@@ -69,5 +69,4 @@ import CoreData
         
         return results!
     }
-}*/
-
+}

@@ -46,7 +46,7 @@ class NoteTableViewCell: UITableViewCell {
                 self.checkBoxWidth.constant = 55
         }
         
-        if note.images.count == 0 {
+        if note.images?.count == 0 {
             iconImageView.image = #imageLiteral(resourceName: "ic_note_text")
         } else {
             iconImageView.image = #imageLiteral(resourceName: "ic_note_image")
