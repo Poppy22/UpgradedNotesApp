@@ -64,15 +64,15 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
     
     internal func populateTableWithMockData() {
         let note1 = Note()
-        note1.set(title: "Doar titluuuu", detail: "", images: [], id: "10", lastUpdate: 111)
+        note1.set(title: "Doar titluuuu", detail: "", images: [], id: UUID().uuidString, lastUpdate: 111)
         let note2 = Note()
-        note2.set(title: "", detail: "Doar descriereeeee", images: [], id: "100", lastUpdate: 111)
+        note2.set(title: "", detail: "Doar descriereeeee", images: [], id: UUID().uuidString, lastUpdate: 111)
         notesArray.append(note1)
         notesArray.append(note2)
         
         for i in 1...5 {
             let newNote = Note()
-            newNote.set(title: "Title " + String(i) + " only one line in length", detail: "A very very very very very very very long Description " + String(i), images: [], id: "10" + String(i), lastUpdate: Int64(Date().timeIntervalSince1970))
+            newNote.set(title: "Title " + String(i) + " only one line in length", detail: "A very very very very very very very long Description " + String(i), images: [], id: UUID().uuidString, lastUpdate: Int64(Date().timeIntervalSince1970))
             notesArray.append(newNote)
         }
     }
@@ -95,13 +95,13 @@ class NotesListController: UIViewController, UITableViewDelegate, UITableViewDat
                 let currentNote = notesArray[indexPath.row]
                 self.performSegue(withIdentifier: SegueToNote, sender: currentNote)
             case .Edit:
-                self.title = String(selectedNotesIndex.count)
                 if selectedNotesIndex.contains(indexPath.row) {
                     let index = selectedNotesIndex.index(of: indexPath.row)
                     selectedNotesIndex.remove(at: index!)
                 } else {
                     selectedNotesIndex.insert(indexPath.row, at: 0)
                 }
+            self.title = String(selectedNotesIndex.count)
         }
             notesTableView.reloadData()
     }

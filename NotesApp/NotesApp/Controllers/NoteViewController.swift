@@ -53,7 +53,7 @@ class NoteViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func goToMainScreen(_ sender: Any) {
-        currentNote.set(title: noteTitleTextField.text!, detail: noteTextView.text, images: [], id: "100", lastUpdate: Int64(Date().timeIntervalSince1970))
+        currentNote.set(title: noteTitleTextField.text!, detail: noteTextView.text, images:NSSet(array :collectionData), id: UUID().uuidString, lastUpdate: Int64(Date().timeIntervalSince1970))
         self.navigationController?.popViewController(animated: true)
     }
     

@@ -90,6 +90,7 @@ class LoginViewController: UIViewController {
                 let FBid = data["id"] as? String
                 let url = NSURL(string: "https://graph.facebook.com/\(FBid!)/picture?type=large&return_ssl_resources=1")
                 self.profilePictureImageView.image = UIImage(data: NSData(contentsOf: url! as URL)! as Data)
+                Account.singleton.setAccount(name: (data["name"] as? String)!, id: FBid!, token:  FBSDKAccessToken.current().appID, email: (data["email"] as? String)!, profilePicture: url!)
             })
             connection.start()
         }
